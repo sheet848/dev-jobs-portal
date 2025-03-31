@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SearchBar from '../components/Search/SearchBar';
+import SearchMobile from '../components/Search/SearchMobile';
+import SearchGrid from '../components/Search/SearchGrid';
 
 const SearchPage = () => {
+
+    //const [size, setSize] = useState(window.innerWidth);
+
   return (
-    <div>SearchPage</div>
+    <>
+    <main id="main">
+        <SearchBar />
+        <SearchMobile />
+
+        <SearchGrid />
+    </main>
+    </>
   )
 }
 
