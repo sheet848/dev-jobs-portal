@@ -22,6 +22,12 @@ const SearchBar = (props) => {
         })
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        e.target.blur();
+        props.submitQuery(query);
+    }
+
   return (
     <>
     <div className="search-bar width-default">
@@ -60,7 +66,8 @@ const SearchBar = (props) => {
                     <span></span>
                     {props.labelText}
                 </label>
-                <button className="btn btn-primary btn-search">
+                <button className="btn btn-primary btn-search"
+                        onClick={e => handleSubmit(e)}>
                     Search
                 </button>
         </div>
