@@ -55,14 +55,14 @@ const SearchBar = (props) => {
             <span></span>
         </div>
         <div className="search-controls-container">
-            <input type="text"
+            <input type="checkbox"
                    className='checkbox-default'
                    name='fullTimeOnly'
                    id='fullTimeOnly'
                    checked={query.fullTimeOnly}
                    onChange={handleChange}
                    tabIndex='-1' />
-                <label for="fullTimeOnly" className="label-checkbox" tabIndex="0">
+                <label htmlFor="fullTimeOnly" className="label-checkbox" tabIndex="0">
                     <span></span>
                     {props.labelText}
                 </label>
