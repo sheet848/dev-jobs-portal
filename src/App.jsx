@@ -1,37 +1,72 @@
-import './App.css'
-import { useState } from 'react'
-import Header from './components/Header'
-import DetailPage from './pages/DetailPage'
-import SearchPage from './pages/SearchPage'
+import React, { useEffect, useState } from 'react'
+import SearchBar from '../components/Search/SearchBar';
+import SearchMobile from '../components/Search/SearchMobile';
+import SearchGrid from '../components/Search/SearchGrid';
 
-function App() {
+const SearchPage = (props) => {
 
-  //const [data, setData] = useState([])
-  //const [limit, setLimit] = useState(12)
-  const [displayGrid, setdisplayGrid] = useState(true);
-  //const [detail, setDetail] = useState({})
+    const [size, setSize] = useState(window.innerWidth);
+    const [params, setParams] = useState(null);
 
-  function switchViewMode(id) {
-    if (id) {
-      setdisplayGrid(prevDisplayGrid => !prevDisplayGrid);
-      //setDetail(data.find(entry => entry.id === id) || null)
-    } else {
-      setdisplayGrid(true);
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
+      function updateSize() {
+        setSize(window.innerWidth);
+      }
+      window.addEventListener("resize", updateSize);
+
+      return () => {
+        window.removeEventListener("resize", updateSize);
+      }
+    }, []);
+
+    function submitQuery(query) {
+      setParams({...query})
     }
-  }
+
+    function handleClick(e) {
+      e.preventDefault();
+      e.target.blur();
+      props.requestMoreData();
+    }
 
   return (
     <>
-      <Header switchViewMode={switchViewMode} />
+    <main id="main">
       {
-        displayGrid ? (
-          <SearchPage />
+        size >=720 ? (
+          <SearchBar 
+            submitQuery={submitQuery}
+            placeholderText={ size >= 1200 ? "Filter by title, companies, expertise..." : "Filter by Title..."}
+            labelText={ size >= 1200 ? "Full Time Only" : "Full Time"} />
         ) : (
-          <DetailPage />
+          <SearchMobile submitQuery={submitQuery} />
         )
       }
+        <SearchGrid 
+          data={props.data}
+          switchViewMode={props.switchViewMode}
+          params={params} 
+        />
+
+      {/*  <div className="load-more-btn-container">
+          <button className="btn btn-primary"
+              onClick={handleClick}>Load More</button>
+        </div>   
+      */}
+        <div className="attribution">
+          Challenge by {" "}
+          <a href="https://www.frontendmentor.io?ref=challenge" target='_blank'>
+            Frontend Mentor
+          </a>
+          . Coded by <a href='https://github.com/sheet848'>Sheetal Naik</a>
+        </div>
+    </main>
     </>
   )
 }
 
-export default App
+export default SearchPage
