@@ -56,7 +56,7 @@ const SearchBar = (props) => {
         </div>
         <div className="search-controls-container">
             <input type="text"
-                   className='checkbox-deafult'
+                   className='checkbox-default'
                    name='fullTimeOnly'
                    id='fullTimeOnly'
                    checked={query.fullTimeOnly}
