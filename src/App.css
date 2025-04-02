@@ -187,7 +187,7 @@ footer {
 header {
   position: fixed;
   top: 0;
-  left: 50px;
+  left: 0;
   z-index: 1;
   height: 10rem;
   width: 100%;
@@ -494,6 +494,7 @@ header {
 /* Styling for detail content */
 
 .detail-content {
+  text-align: left;
   z-index: 2;
   margin-top: 2rem;
   margin-bottom: 12rem;
@@ -581,6 +582,7 @@ li {
 /* Footer styling */
 
 .detail-footer {
+  left: 0;
   z-index: 3;
   position: fixed;
   width: 100%;
