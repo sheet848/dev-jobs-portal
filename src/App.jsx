@@ -21,7 +21,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch('./src/constants/data.json', { mode: "no-cors"})
+    fetch('./constants/data.json', { mode: "no-cors"})
       .then(res => res.json())
       .then(jsonArray => {
         const filterArray = jsonArray.slice(0, limit);
